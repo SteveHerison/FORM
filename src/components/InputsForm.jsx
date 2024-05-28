@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const InputsForm = ({ id, type, value, onChange, name }) => {
   if (type === "textarea") {
     return (
@@ -16,7 +18,7 @@ const InputsForm = ({ id, type, value, onChange, name }) => {
         name={name}
         checked={value}
         onChange={onChange}
-        className="mr-2 "
+        className="mr-2"
       />
     );
   } else {
@@ -30,6 +32,21 @@ const InputsForm = ({ id, type, value, onChange, name }) => {
       />
     );
   }
+};
+
+InputsForm.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    "text",
+    "password",
+    "email",
+    "textarea",
+    "radio",
+    "checkbox",
+  ]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
 };
 
 export default InputsForm;
